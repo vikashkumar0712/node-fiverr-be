@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
-
-if (['local', 'nodemon-local'].includes(process.env.NODE_ENV?.trim())) {
-  let path = `${__dirname}/../../.env.local`;
-  if (process.env.NODE_ENV === 'nodemon-local') path = `${__dirname}/../.env.local`;
-  dotenv.config({ path: path });
-}
+dotenv.config();
+//if (['local', 'nodemon-local'].includes(process.env.NODE_ENV?.trim())) {
+//  let path = `${__dirname}/../../.env.local`;
+//  if (process.env.NODE_ENV === 'nodemon-local') path = `${__dirname}/../.env.local`;
+//  dotenv.config({ path: path });
+//}
 
 import express from 'express';
 import compression from 'compression';
