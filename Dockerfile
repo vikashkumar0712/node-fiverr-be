@@ -1,12 +1,12 @@
-# Build stage
-FROM node:16-alpine AS build
+FROM node:16-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
 COPY . .
+RUN npm install --platform=linuxmusl --arch=x64 sharp
+#COPY . .
 RUN npm run build
 
-# Production stage
-FROM nginx:1.21.3-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8002
+
+ENTRYPOINT ["npm"]
+CMD ["start"]
+
