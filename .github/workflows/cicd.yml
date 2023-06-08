@@ -1,0 +1,27 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKER_HUB_USERNAME: vikashkumar07
+  DOCKER_HUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t vikashkumar07/node-fiverr-backend:$build .
+
+      - name: Log in to Docker Hub
+        run: docker login --username ${{ env.DOCKER_HUB_USERNAME }} --password ${{ env.DOCKER_HUB_PASSWORD }}
+
+      - name: Push Docker image to Docker Hub
+        run: docker push vikashkumar07/node-fiverr-backend:$build
