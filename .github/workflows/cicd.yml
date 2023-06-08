@@ -25,4 +25,4 @@ jobs:
         run: docker login --username ${{ env.DOCKER_HUB_USERNAME }} --password ${{ env.DOCKER_HUB_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push vikashkumar07/node-fiverr-backend:$build
+        run: docker push vikashkumar07/node-fiverr-backend:${{ env.IMAGE_TAG }}
